@@ -11,6 +11,8 @@
 #include <QDebug>
 #include <QMainWindow>
 #include <QPushButton>
+#include <QMouseEvent>
+#include <QEvent>
 namespace Ui {
 class MainWindow;
 }
@@ -22,17 +24,27 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void init(char type);
     chess *game;//游戏指针
     QTimer *time;
-    QPushButton b1;//开始游戏
-    QPushButton b2;//人人
-    QPushButton b3;//人机
+    char game_type;
+    char game_style;
+    bool selectPos=false;
+
 
     void paintEvent(QPaintEvent *);//绘图函数
-    void mouseMoveEvent(QMouseEvent *event);
-    void mouseReleaseEvent();//鼠标点击
+    void mouseMoveEvent(QMouseEvent *ev);
+    void mouseReleaseEvent(QMouseEvent *ev);//鼠标点击
     int clickx,clicky;//鼠标点击坐标
     void startgame();//初始化游戏
+    void ifend();
+    void actionpeo();
+ private slots:
+
+
+    void actionai();
+    void slot_button();
+    void slot_button2();
 
 
 
